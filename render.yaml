@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: secure-grade-portal
+    env: python
+    rootDir: proje-2-secure
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        generateValue: true

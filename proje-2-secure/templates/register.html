@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Register · Secure Grade Portal{% endblock %}
+{% block content %}
+  <section class="auth-layout">
+    <div class="auth-copy">
+      <p class="eyebrow">Student registration</p>
+      <h1>Create a protected account.</h1>
+      <p>New registrations are always student accounts. Instructor privileges can only be granted by an authorized instructor account.</p>
+    </div>
+    <form class="panel auth-panel" action="{{ url_for('register') }}" method="post" autocomplete="off">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+      <label>
+        Username
+        <input name="username" value="{{ username or '' }}" required minlength="3" maxlength="32" pattern="[A-Za-z0-9_.-]{3,32}" autocomplete="username">
+      </label>
+      <label>
+        Password
+        <input name="password" type="password" required minlength="8" autocomplete="new-password">
+      </label>
+      <label>
+        Confirm password
+        <input name="confirm_password" type="password" required minlength="8" autocomplete="new-password">
+      </label>
+      <button class="primary-button" type="submit">Create account</button>
+      <p class="form-note">Already registered? <a href="{{ url_for('login') }}">Back to login</a>.</p>
+    </form>
+  </section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} · Secure Grade Portal{% endblock %}
+{% block content %}
+  <section class="panel error-panel">
+    <p class="eyebrow">Security response</p>
+    <h1>{{ code }}</h1>
+    <p>{{ message }}</p>
+    <a class="primary-button" href="{{ url_for('dashboard') if current_user else url_for('login') }}">Go back</a>
+  </section>
+{% endblock %}

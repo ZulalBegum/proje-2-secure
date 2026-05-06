@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Login · Secure Grade Portal{% endblock %}
+{% block content %}
+  <section class="auth-layout">
+    <div class="auth-copy">
+      <p class="eyebrow">Encrypted student grade system</p>
+      <h1>Sign in to your secure dashboard.</h1>
+      <p>Student accounts can view only their own encrypted records. Instructor accounts manage users and grades through role-based controls.</p>
+    </div>
+    <form class="panel auth-panel" action="{{ url_for('login') }}" method="post" autocomplete="off">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+      <label>
+        Username
+        <input name="username" required minlength="3" maxlength="32" autocomplete="username" placeholder="instructor or student username">
+      </label>
+      <label>
+        Password
+        <input name="password" type="password" required autocomplete="current-password">
+      </label>
+      <button class="primary-button" type="submit">Login</button>
+      <p class="form-note">No account yet? <a href="{{ url_for('register') }}">Create a student account</a>.</p>
+    </form>
+  </section>
+{% endblock %}

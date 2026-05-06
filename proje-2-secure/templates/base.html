@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Secure Grade Portal{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="{{ url_for('dashboard') if current_user else url_for('login') }}">
+        <span class="brand-mark">SG</span>
+        <span>
+          <strong>Secure Grade Portal</strong>
+          <small>SWE210 Software Security</small>
+        </span>
+      </a>
+      <img class="isu-logo" src="{{ url_for('static', filename='istinye-logo.svg') }}" alt="Istinye University">
+      {% if current_user %}
+        <nav class="nav">
+          <span class="pill">{{ current_identity }}</span>
+          {% if current_user["role"] == "admin" %}
+            <a href="{{ url_for('admin') }}">Instructor Panel</a>
+          {% else %}
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+          {% endif %}
+          <form action="{{ url_for('logout') }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            <button class="link-button" type="submit">Logout</button>
+          </form>
+        </nav>
+      {% endif %}
+    </header>
+
+    <main class="page-shell">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <section class="alerts" aria-live="polite">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

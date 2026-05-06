@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Secure Grade Portal{% endblock %}
+{% block content %}
+  <section class="section-head">
+    <div>
+      <p class="eyebrow">Student dashboard</p>
+      <h1>Your grades</h1>
+    </div>
+    <span class="security-badge">Read-only student access</span>
+  </section>
+
+  <section class="metrics">
+    <div class="metric">
+      <span>Total records</span>
+      <strong>{{ grades|length }}</strong>
+    </div>
+    <div class="metric">
+      <span>Visibility</span>
+      <strong>Own data only</strong>
+    </div>
+    <div class="metric">
+      <span>Storage</span>
+      <strong>Encrypted</strong>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-title">
+      <h2>Grade records</h2>
+      <p>Grades are decrypted only after authorization.</p>
+    </div>
+    {% if grades %}
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Grade</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in grades %}
+              <tr>
+                <td>{{ item.course }}</td>
+                <td><span class="grade-chip">{{ item.grade }}</span></td>
+                <td>{{ item.created_at }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="empty-state">No grades have been assigned to your account yet.</p>
+    {% endif %}
+  </section>
+{% endblock %}
