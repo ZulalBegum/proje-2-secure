@@ -2,6 +2,7 @@ services:
   - type: web
     name: secure-grade-portal
     env: python
+    plan: free
     rootDir: proje-2-secure
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
