@@ -26,7 +26,7 @@ python app.py
 
 Open `http://127.0.0.1:5001`.
 
-Instructor login uses this username:
+Admin login uses this username and password:
 
 ```text
 Username: instructor
