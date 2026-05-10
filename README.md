@@ -30,6 +30,7 @@ Instructor login uses this username:
 
 ```text
 Username: instructor
+Password: isu2026
 ```
 
 For local testing, the first run creates `admin_initial_password.txt`; use the password listed there. For production, set `FLASK_SECRET_KEY` and `ADMIN_PASSWORD` as environment variables before first boot.
