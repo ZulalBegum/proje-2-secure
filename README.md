@@ -13,7 +13,6 @@ This project is a Flask-based secure student grade portal.
 - Grade values are restricted to `AA`, `AB`, `BB`, `CB`, `CC`, `DC`, `DD`, `FF`.
 - Forms include CSRF tokens.
 - Session cookies and common browser security headers are configured.
-- Weak legacy instructor password `isu2026` is automatically rotated on first boot.
 
 ## Run
 
